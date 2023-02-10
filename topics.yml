@@ -1,0 +1,13 @@
+version: '2'
+services:
+  topic_foo:
+    image: confluentinc/cp-kafka:5.4.9
+    restart: on-failure
+    command: >-
+      kafka-topics --zookeeper zoo1:2181 --force --create --if-not-exists --topic foo_topic --partitions 1 --replication-factor 1
+
+  topic_consumer_offsets:
+    image: confluentinc/cp-kafka:5.4.9
+    restart: on-failure
+    command: >-
+      kafka-topics --zookeeper zoo1:2181 --force --create --if-not-exists --topic consumer_offsets_topic --partitions 1 --replication-factor 1
